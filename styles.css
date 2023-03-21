@@ -24,7 +24,7 @@ header {
 
 
 .cell {
-    border: solid 1px;
+    border: "1px solid black";
     flex-grow: 1;
 }
 
@@ -51,6 +51,7 @@ header {
     align-self: center;
     justify-content: center;
     background-color: white;
+    border: "1px solid black";
 }
 
 

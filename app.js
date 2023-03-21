@@ -36,6 +36,7 @@ function setCurrentSizeTo(newSize) {
 const drawColorPicker = document.getElementById('drawColorPicker');
 const bgColorPicker = document.getElementById('bgColorPicker');
 const sizeSlider = document.getElementById('sizeSlider');
+const toggleGridButton = document.getElementById('grid-toggle-btn');
 let grid = document.querySelector('.grid');
 
 // create the grid
@@ -44,7 +45,6 @@ createGrid(currentSize);
 // create array of all cells, call at the end of createGrid()
 function updateCellList() {
     allCells = document.querySelectorAll('.cell');
-    console.log(allCells);
 }
 
 // call setDrawColorTo() when whenever new color is selected from colorPicker
@@ -54,12 +54,38 @@ drawColorPicker.oninput = (e) => setDrawColorTo(e.target.value);
 bgColorPicker.oninput = (e) => setBgColorTo(e.target.value);
 
 // use sizeSlider to adjust the size of the grid
-sizeSlider.onchange= (e) => {changeSize(e.target.value)
-}
+sizeSlider.onchange= (e) => {changeSize(e.target.value)}
 
 // display current size on slider immediately
 sizeSlider.onmousemove = (e) => updateSizeValue(e.target.value)
 
+// function to toggle grid border on and off
+function toggleGridBorder() {
+    document.querySelectorAll('.cell').forEach(function(e) {
+        if (e.style.border) {
+          e.style.border = '';
+        } else {
+          e.style.border = 'solid 1px black';
+        }
+        
+      });
+    console.log("grid changed");
+
+}
+
+// turn on the border after the cell size is adjusted so 
+// the user can better grasp the size without having to toggle again
+function applyBorder() {
+    const cells = document.querySelectorAll('.cell');
+    cells.forEach(cell => {
+      cell.style.border = '1px solid black';
+    });
+  }
+
+// use above function to toggle Grid border whenever button is pressed
+toggleGridButton.onclick = toggleGridBorder
+
+// all steps to apply changes in grid size in one function
 function changeSize(newSize) {
     setCurrentSizeTo(newSize);
     updateSizeValue(newSize);
@@ -71,6 +97,7 @@ function updateSizeValue(value) {
     sizeValue.innerHTML = `${value} x ${value}`
   }
 
+// clear the grid the create a new one with current size
 function reloadGrid() {
     clearGrid();
     createGrid(currentSize);
@@ -124,7 +151,8 @@ function createGrid(currentSize) {
         grid.appendChild(row);
     }
     updateCellList()
-    setBgColorTo(bgColor); 
+    setBgColorTo(bgColor);
+    applyBorder();
 }
 
 // function to change the div (cell) background colour when hovered over
