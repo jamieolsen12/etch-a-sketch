@@ -9,14 +9,58 @@
 //  1f. Have 256 boxes with same class and unique IDs
 
 // Color each cell will change its background color property to when clicked
-let targetColor = "green";
+let drawColor = "green";
+let bgColor = "white";
 
-let boxLength = 100;
+let boxLength = 25;
 
-let boxGrid = document.querySelector('.box-grid');
+let grid = document.querySelector('.grid');
 
 let idCounter = 1
 
+const drawColorPicker = document.getElementById('drawColorPicker');
+const bgColorPicker = document.getElementById('bgColorPicker');
+
+// create the grid
+createGrid(boxLength);
+
+// array of all cells
+let allCells = document.querySelectorAll('.cell');
+
+
+// function to set the background color of all cells
+function applyBgColor() {
+    allCells.forEach((cell) => {
+        if (cell.classList.contains("inked")) {
+            console.log(cell);
+        } else {
+            cell.style.backgroundColor = bgColor;
+        }
+    })
+}
+
+// function to change draw color
+function setDrawColorTo(newColor) {
+    drawColor = newColor;
+}
+
+// function to change background color
+function setBgColorTo(newColor) {
+    bgColor = newColor;
+    applyBgColor();
+}
+
+// call setDrawColorTo() when whenever new color is selected from colorPicker
+drawColorPicker.oninput = (e) => setDrawColorTo(e.target.value);
+
+// call setBgColorTo() whenever new color is selected from bgColorPicker
+bgColorPicker.oninput = (e) => {
+    setBgColorTo(e.target.value);
+}
+
+
+
+function createGrid(boxLength){
 // create boxLength rows
 for (i = 0; i < (boxLength); i++) {
     var row = document.createElement("div");
@@ -39,26 +83,27 @@ for (i = 0; i < (boxLength); i++) {
     }
 
     // add each row to parent container
-    boxGrid.appendChild(row);
+    grid.appendChild(row);
 }
-
+}
 
 // function to change the div (cell) background colour when hovered over
 function addHoverColor(div) {
-    div.addEventListener("mouseover", function() {
-        div.style.backgroundColor = targetColor;
+    div.addEventListener("mousedown", function() {
+        div.style.backgroundColor = drawColor;
+        div.classList.add("inked");
     })
 }
 
 // function to set each color button's background color according to its ID
-function setColorButtons() {
-    let colorButtons = document.querySelectorAll('color-btn');
-    colorButtons.forEach(button => {
-        button.backgroundColor = this.id;
-    })
-}
+// function setColorButtons() {
+//     let colorButtons = document.querySelectorAll('color-btn');
+//     colorButtons.forEach(button => {
+//         button.backgroundColor = this.id;
+//     })
+// }
 
-setColorButtons();
+// setColorButtons();
    
 
 

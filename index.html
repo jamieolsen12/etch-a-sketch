@@ -11,17 +11,27 @@
 <header>Etch-a-Sketch</header>
 
     <div class="game">
-        <div class="box-grid">
-        </div>
+
         <div class="settings-panel">
-            <div class="color">
-                <h1>Color</h1>
-                <button class="color-btn" id="blue">Blue</button>
-                <button class="color-btn" id="red">Red</button>
-                <button class="color-btn" id="purple">Purple</button>
-                <button class="color-btn" id="green">Green</button>
+            
+            <div class="draw-color-setting">
+                <input id="drawColorPicker" type="color" value="#333333" />
+                Draw Color Picker
+            </div>
+            <div class="bg-color-setting">
+                <input id="bgColorPicker" type="color" value="#333333" />
+                BG Color Picker
+            </div>
+            <div id="sizeValue" class="size-value">61 x 61</div>
+
+            <input id="sizeSlider" type="range" value="16" min="1" max="64">
+            
+        </div>
+        <div class="grid-container">
+            <div class="grid">
             </div>
         </div>
+        
     </div>
    
     
