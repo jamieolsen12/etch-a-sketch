@@ -6,6 +6,7 @@ let bgColor = "white";
 let currentSize = 16;
 let idCounter = 1
 let allCells = [];
+let isMouseDown = false;
 
 
 // Dom Elements
@@ -28,7 +29,26 @@ bgColorPicker.oninput = (e) => setBgColorTo(e.target.value);
 sizeSlider.onchange= (e) => {changeSize(e.target.value)};
 sizeSlider.onmousemove = (e) => updateSizeValue(e.target.value);
 toggleGridButton.onclick = toggleGridBorder;
+document.addEventListener('mousedown', () => {isMouseDown = true})
+document.addEventListener('mouseup', () => {isMouseDown = false})
 
+// function to add click listener to each cell, called in createGrid()
+function addClickColor(div) {
+    div.addEventListener("mousedown", function() {
+        div.style.backgroundColor = drawColor;
+        div.classList.add("inked");
+    })
+}
+
+// function to add hover listener to each cell, only drawing if mouse is also clicked
+function addHoverColor(div) {
+    div.addEventListener("mouseover", function() {
+        if (isMouseDown) {
+            div.style.backgroundColor = drawColor;
+            div.classList.add("inked");
+        }
+    })
+}
 
 
 
@@ -76,10 +96,9 @@ function createGrid(currentSize) {
             
             // show ID in box to aid setup for now, will remove later
             cell.id = String(idCounter);
-            // cell.textContent = String(idCounter);
             idCounter++;
+            addClickColor(cell);
             addHoverColor(cell);
-        
 
             // add each cell to parent container
             row.appendChild(cell);
@@ -127,11 +146,8 @@ function applyBgColor() {
     })
 }
 
-// function to change the div (cell) background colour when hovered over
-function addHoverColor(div) {
-    div.addEventListener("mousedown", function() {
-        div.style.backgroundColor = drawColor;
-        div.classList.add("inked");
-    })
-}
+
+
+
+
 
