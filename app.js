@@ -37,6 +37,7 @@ const drawColorPicker = document.getElementById('drawColorPicker');
 const bgColorPicker = document.getElementById('bgColorPicker');
 const sizeSlider = document.getElementById('sizeSlider');
 const toggleGridButton = document.getElementById('grid-toggle-btn');
+const clearButton = document.getElementById('clear-btn');
 let grid = document.querySelector('.grid');
 
 // create the grid
@@ -46,6 +47,9 @@ createGrid(currentSize);
 function updateCellList() {
     allCells = document.querySelectorAll('.cell');
 }
+
+// clear button wipes board of all drawing, essentially createds a new one
+clearButton.onclick = reloadGrid
 
 // call setDrawColorTo() when whenever new color is selected from colorPicker
 drawColorPicker.oninput = (e) => setDrawColorTo(e.target.value);
@@ -99,11 +103,11 @@ function updateSizeValue(value) {
 
 // clear the grid the create a new one with current size
 function reloadGrid() {
-    clearGrid();
+    removeGrid();
     createGrid(currentSize);
 }
   
-function clearGrid() {
+function removeGrid() {
     grid.innerHTML = '';
 }
 
@@ -163,15 +167,7 @@ function addHoverColor(div) {
     })
 }
 
-// function to set each color button's background color according to its ID
-// function setColorButtons() {
-//     let colorButtons = document.querySelectorAll('color-btn');
-//     colorButtons.forEach(button => {
-//         button.backgroundColor = this.id;
-//     })
-// }
 
-// setColorButtons();
    
 
 
