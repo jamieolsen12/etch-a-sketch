@@ -125,7 +125,8 @@ function createGrid(currentSize) {
         // add each row to parent container
         grid.appendChild(row);
     }
-    updateCellList() 
+    updateCellList()
+    setBgColorTo(bgColor); 
 }
 
 // function to change the div (cell) background colour when hovered over
