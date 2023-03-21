@@ -11,26 +11,28 @@
 // Color each cell will change its background color property to when clicked
 let targetColor = "green";
 
+let boxLength = 100;
 
 let boxGrid = document.querySelector('.box-grid');
 
 let idCounter = 1
 
-// create 16 rows
-for (i = 0; i < 16; i++) {
+// create boxLength rows
+for (i = 0; i < (boxLength); i++) {
     var row = document.createElement("div");
     row.classList.add("row");
 
-    // create 16 cells within each row with cell class and unique ID
-    for (j = 0; j < 16; j++) {
+    // create boxLength cells within each row with cell class and unique ID
+    for (j = 0; j < (boxLength); j++) {
         var cell = document.createElement('div');
         cell.classList.add('cell');
         
         // show ID in box to aid setup for now, will remove later
         cell.id = String(idCounter);
-        cell.textContent = idCounter;
+        // cell.textContent = String(idCounter);
         idCounter++;
         addHoverColor(cell);
+       
 
         // add each cell to parent container
         row.appendChild(cell);
@@ -47,6 +49,18 @@ function addHoverColor(div) {
         div.style.backgroundColor = targetColor;
     })
 }
+
+// function to set each color button's background color according to its ID
+function setColorButtons() {
+    let colorButtons = document.querySelectorAll('color-btn');
+    colorButtons.forEach(button => {
+        button.backgroundColor = this.id;
+    })
+}
+
+setColorButtons();
+   
+
 
 
 

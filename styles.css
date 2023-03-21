@@ -5,19 +5,49 @@ header {
     text-align: center;
 }
 
-.cell {
-    margin: 1px;
-    border: solid 1px;
-    font-size: 12px;
-    width: 28px;
-    height: 28px;
+.game {
     display: flex;
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
+}
+
+
+
+.cell {
+    border: solid 1px;
+    flex-grow: 1;
 }
 
 .row {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    flex-grow: 1;
+}
+
+.box-grid {
+    width: 750px;
+    height: 750px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+.color {
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.settings {
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.color-btn {
+    margin: 15px auto;
+    width: 75px;
+    color: white;
 }
