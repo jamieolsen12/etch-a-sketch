@@ -18,7 +18,8 @@ const clearButton = document.getElementById('clear-btn');
 let grid = document.querySelector('.grid');
 
 
-// create the grid and update cell list
+// create the grid and update cell list, set cell properties 
+// and add event listeners to each cell
 createGrid(currentSize);
 
 
@@ -54,7 +55,7 @@ function addHoverColor(div) {
 
 // functions to change variables
 function setDrawColorTo(newColor) {
-    rawColor = newColor;
+    drawColor = newColor;
 }
 
 function setBgColorTo(newColor) {
@@ -109,6 +110,7 @@ function createGrid(currentSize) {
     }
     updateCellList()
     setBgColorTo(bgColor);
+    // turn on the border by default each time a new grid is created
     applyBorder();
 }
 

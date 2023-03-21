@@ -36,16 +36,16 @@ header {
 
 .grid-container {
     background-color: darkblue;
-    width: 650px;
-    height: 650px;
+    width: 750px;
+    height: 750px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .grid {
-    width: 600px;
-    height: 600px;
+    width: 700px;
+    height: 700px;
     display: flex;
     flex-direction: column;
     align-self: center;
