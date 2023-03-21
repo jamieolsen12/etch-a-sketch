@@ -88,9 +88,7 @@ function clearGrid() {
 // function to apply the background color to all cells
 function applyBgColor() {
     allCells.forEach((cell) => {
-        if (cell.classList.contains("inked")) {
-            console.log(cell);
-        } else {
+        if (!cell.classList.contains("inked")) {
             cell.style.backgroundColor = bgColor;
         }
     })
