@@ -98,7 +98,7 @@ function changeSize(newSize) {
 
 // function to change text to show current grid size
 function updateSizeValue(value) {
-    sizeValue.innerHTML = `${value} x ${value}`
+    sizeValue.innerHTML = `Grid size: ${value} x ${value}`
   }
 
 // clear the grid the create a new one with current size
