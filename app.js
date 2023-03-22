@@ -7,6 +7,7 @@ let currentSize = 16;
 let idCounter = 1
 let allCells = [];
 let isMouseDown = false;
+let isGridBorderOn = true;
 let rainbowMode = false;
 
 
@@ -87,14 +88,32 @@ function toggleGridBorder() {
     document.querySelectorAll('.cell').forEach(function(e) {
         if (e.style.border) {
           e.style.border = '';
+          isGridBorderOn = false;
+          setGridToggleButtonAppearance();
         } else {
           e.style.border = 'solid 1px black';
+          isGridBorderOn = true;
+          setGridToggleButtonAppearance();
         }
-        
       });
     console.log("grid changed");
-
 }
+
+// functions to manipulate settings area
+
+function setGridToggleButtonAppearance() {
+    if (isGridBorderOn === true) {
+        toggleGridButton.style.color = "#202020";
+        toggleGridButton.style.backgroundColor = "#7245b5";
+    }
+    if (isGridBorderOn === false) {
+        toggleGridButton.style.color = "#7245b5";
+        toggleGridButton.style.backgroundColor = "#202020";
+    }
+}
+
+
+
 
 // functions to manipulate the grid
 function createGrid(currentSize) {
@@ -150,6 +169,8 @@ function applyBorder() {
     cells.forEach(cell => {
       cell.style.border = '1px solid black';
     });
+    isGridBorderOn = true;
+    setGridToggleButtonAppearance()
 }
 
 function applyBgColor() {
@@ -170,16 +191,22 @@ function getRandomColor() {
     return color;
   }
 
-  // toggle rainbow mode
+// toggle rainbow mode, also alter buttons appearance to show if its on or off
 function toggleRainbowMode() {
     if (rainbowMode === true) {
         rainbowMode = false;
         console.log(rainbowMode);
-    } else {
+        toggleRainbowButton.style.color = "#7245b5";
+        toggleRainbowButton.style.backgroundColor = "#202020";
+    } else if (rainbowMode === false) {
         rainbowMode = true;
         console.log(rainbowMode);
+        toggleRainbowButton.style.color = "#202020";
+        toggleRainbowButton.style.backgroundColor = "#7245b5";
     }
 }
+
+
 
 
 

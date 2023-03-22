@@ -45,6 +45,13 @@ header {
     background: #7245b5;
 }
 
+/* #sizeSlider::-webkit-slider-runnable-track {
+    background-color: #7245b5;
+} */
+
+
+
+
 
 .cell {
     border: "1px solid black";
@@ -93,3 +100,8 @@ button {
     font-weight: 400;
     color: #7245b5;
 }
+
+#clear-btn:active {
+    background-color: #7245b5;
+    color: #202020;
+  }
