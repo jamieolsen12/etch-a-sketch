@@ -1,7 +1,7 @@
 
 
 // Initialize variables
-let drawColor = "green";
+let drawColor = "#02f2d6";
 let bgColor = "white";
 let currentSize = 16;
 let idCounter = 1
@@ -195,12 +195,10 @@ function getRandomColor() {
 function toggleRainbowMode() {
     if (rainbowMode === true) {
         rainbowMode = false;
-        console.log(rainbowMode);
         toggleRainbowButton.style.color = "#7245b5";
         toggleRainbowButton.style.backgroundColor = "#202020";
     } else if (rainbowMode === false) {
         rainbowMode = true;
-        console.log(rainbowMode);
         toggleRainbowButton.style.color = "#202020";
         toggleRainbowButton.style.backgroundColor = "#7245b5";
     }

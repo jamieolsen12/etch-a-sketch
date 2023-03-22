@@ -34,6 +34,26 @@ header {
     border-radius: 10px;
 }
 
+.color-container {
+    width: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start ;
+    align-items: center;
+    gap: 10px;
+}
+
+
+
+input[type="color"] {
+    border: 3px solid #7245b5;
+    width: 60px;
+    height: 40px;
+    background-color: none;
+    padding: 0;
+  }
+  
+
 .size-slider-container {
     gap: 15px;
     width: 200px;
