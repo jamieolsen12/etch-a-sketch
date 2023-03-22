@@ -7,12 +7,14 @@ let currentSize = 16;
 let idCounter = 1
 let allCells = [];
 let isMouseDown = false;
+let rainbowMode = false;
 
 
 // Dom Elements
 const drawColorPicker = document.getElementById('drawColorPicker');
 const bgColorPicker = document.getElementById('bgColorPicker');
 const sizeSlider = document.getElementById('sizeSlider');
+const toggleRainbowButton = document.getElementById('rainbow-toggle-btn');
 const toggleGridButton = document.getElementById('grid-toggle-btn');
 const clearButton = document.getElementById('clear-btn');
 let grid = document.querySelector('.grid');
@@ -29,6 +31,7 @@ drawColorPicker.oninput = (e) => setDrawColorTo(e.target.value);
 bgColorPicker.oninput = (e) => setBgColorTo(e.target.value);
 sizeSlider.onchange= (e) => {changeSize(e.target.value)};
 sizeSlider.onmousemove = (e) => updateSizeValue(e.target.value);
+toggleRainbowButton.onclick = toggleRainbowMode;
 toggleGridButton.onclick = toggleGridBorder;
 document.addEventListener('mousedown', () => {isMouseDown = true})
 document.addEventListener('mouseup', () => {isMouseDown = false})
@@ -36,7 +39,12 @@ document.addEventListener('mouseup', () => {isMouseDown = false})
 // function to add click listener to each cell, called in createGrid()
 function addClickColor(div) {
     div.addEventListener("mousedown", function() {
-        div.style.backgroundColor = drawColor;
+        
+        if (rainbowMode === true) {
+            div.style.backgroundColor = getRandomColor();
+        } else {
+            div.style.backgroundColor = drawColor;
+        }
         div.classList.add("inked");
     })
 }
@@ -45,7 +53,11 @@ function addClickColor(div) {
 function addHoverColor(div) {
     div.addEventListener("mouseover", function() {
         if (isMouseDown) {
-            div.style.backgroundColor = drawColor;
+            if (rainbowMode === true) {
+                div.style.backgroundColor = getRandomColor();
+            } else {
+                div.style.backgroundColor = drawColor;
+            }
             div.classList.add("inked");
         }
     })
@@ -147,6 +159,28 @@ function applyBgColor() {
         }
     })
 }
+
+// function to get random color for rainbow mode
+function getRandomColor() {
+    var letters = "0123456789ABCDEF";
+    var color = "#";
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+  // toggle rainbow mode
+function toggleRainbowMode() {
+    if (rainbowMode === true) {
+        rainbowMode = false;
+        console.log(rainbowMode);
+    } else {
+        rainbowMode = true;
+        console.log(rainbowMode);
+    }
+}
+
 
 
 

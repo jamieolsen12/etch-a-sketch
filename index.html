@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Delicious+Handrawn&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <title>Etch-a-Sketch</title>
 </head>
@@ -15,16 +18,21 @@
         <div class="settings-panel">
             
             <div class="draw-color-setting">
-                <input id="drawColorPicker" type="color" value="#333333" />
+                <input class="color-picker" id="drawColorPicker" type="color" value="#333333" />
                 Draw Color Picker
             </div>
             <div class="bg-color-setting">
-                <input id="bgColorPicker" type="color" value="#ffffff" />
+                <input class="color-picker" id="bgColorPicker" type="color" value="#ffffff" />
                 BG Color Picker
             </div>
-            <div id="sizeValue" class="size-value">Grid Size: 16 x 16</div>
-
-            <input id="sizeSlider" type="range" value="16" min="1" max="64">
+            <div class="size-slider-container">
+                <div id="sizeValue" class="size-value">Grid Size: 16 x 16</div>
+                <input id="sizeSlider" type="range" value="16" min="1" max="64">
+            </div>
+            
+            <div class="toggle-rainbow-container">
+                <button id="rainbow-toggle-btn">Toggle Rainbow</button>
+            </div>
             <div class="grid-toggle-container">
                 <button id="grid-toggle-btn">Toggle Grid</button>
             </div>

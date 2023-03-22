@@ -1,15 +1,17 @@
 
+
+
 body {
-    background-color: grey;
+    background-color: black;
 }
 
 header {
     padding: 15px;
     margin-bottom: 30px;
     text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 72px;
-    color: green;
+    font-family: 'Delicious Handrawn', cursive;
+    font-size: 64px;
+    color: #7245b5;
 }
 
 .game {
@@ -17,10 +19,31 @@ header {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 100px;
-    max-width: 1400px;
+    gap: 125px;
 }
 
+.settings-panel {
+    background-color: #202020;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 30px;
+    color: #7245b5;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 10px;
+}
+
+.size-slider-container {
+    gap: 15px;
+    width: 200px;
+    text-align: center;
+}
+
+#sizeSlider {
+    width: 200px;
+    background: #7245b5;
+}
 
 
 .cell {
@@ -35,17 +58,18 @@ header {
 }
 
 .grid-container {
-    background-color: darkblue;
-    width: 750px;
-    height: 750px;
+    background-color: #202020;
+    width: 650px;
+    height: 650px;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 10px;
 }
 
 .grid {
-    width: 700px;
-    height: 700px;
+    width: 600px;
+    height: 600px;
     display: flex;
     flex-direction: column;
     align-self: center;
@@ -58,4 +82,14 @@ header {
 
 #size-btn {
     width: 75px;
+}
+
+button {
+    border: 1px solid #7245b5;
+    background-color: #202020;
+    padding: 10px;
+    width: 200px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #7245b5;
 }
