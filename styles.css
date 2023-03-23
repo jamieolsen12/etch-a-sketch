@@ -28,7 +28,7 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 30px;
+    gap: 35px;
     color: #7245b5;
     font-family: 'Roboto', sans-serif;
     border-radius: 10px;
@@ -40,7 +40,7 @@ header {
     flex-direction: row;
     justify-content: flex-start ;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
 }
 
 
