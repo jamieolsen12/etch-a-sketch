@@ -125,3 +125,11 @@ button {
     background-color: #7245b5;
     color: #202020;
   }
+
+footer {
+margin-top: 50px;
+color: white;
+text-align: center;
+font-size: 14px;
+font-family: 'Roboto', sans-serif;
+}

@@ -1,3 +1,10 @@
+// STEPS LEFT
+// 1. Finish eraser button
+// 2. Color grabber?
+// 3. Pretty up settings panel
+// 4. Decide on lighten and darken buttons
+
+
 
 
 // Initialize variables
@@ -191,7 +198,7 @@ function getRandomColor() {
     return color;
   }
 
-// toggle rainbow mode, also alter buttons appearance to show if its on or off
+// toggle rainbow mode, also alter toggle rainbow button's appearance to show if its on or off
 function toggleRainbowMode() {
     if (rainbowMode === true) {
         rainbowMode = false;
