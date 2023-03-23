@@ -88,6 +88,8 @@ function addHoverColor(div) {
 // functions to change variables
 function setDrawColorTo(newColor) {
     drawColor = newColor;
+    turnOffEraserMode();
+    turnOffRainbowMode();
 }
 
 function setBgColorTo(newColor) {
@@ -213,14 +215,21 @@ function getRandomColor() {
 // toggle rainbow mode, also alter toggle rainbow button's appearance to show if its on or off
 function toggleRainbowMode() {
     if (rainbowMode === true) {
-        rainbowMode = false;
-        toggleRainbowButton.style.color = "#7245b5";
-        toggleRainbowButton.style.backgroundColor = "#202020";
+        turnOffRainbowMode(); 
     } else if (rainbowMode === false) {
         rainbowMode = true;
         toggleRainbowButton.style.color = "#202020";
         toggleRainbowButton.style.backgroundColor = "#7245b5";
+        turnOffEraserMode();
     }
+}
+
+// seperate function to turn off rainbow mode, to call when pen color is changed,
+// or when erasor mode is turned on
+function turnOffRainbowMode() {
+    rainbowMode = false;
+    toggleRainbowButton.style.color = "#7245b5";
+    toggleRainbowButton.style.backgroundColor = "#202020";
 }
 
 // use similar function to toggle eraser mode
@@ -229,11 +238,20 @@ function toggleEraserMode() {
         eraserMode = true;
         eraserButton.style.color = "#202020";
         eraserButton.style.backgroundColor = "#7245b5";
+        turnOffRainbowMode(); 
     } else if (eraserMode === true) {
-        eraserMode = false;
-        eraserButton.style.color = "#7245b5";
-        eraserButton.style.backgroundColor = "#202020";
+        turnOffEraserMode()
     }
+}
+
+// seperate function to turn eraser mode off and alter button's appearance
+// as the eraser moder should be turned off automatically if the color is changed
+// or rainbow mode is turned on
+
+function turnOffEraserMode() {
+    eraserMode = false;
+    eraserButton.style.color = "#7245b5";
+    eraserButton.style.backgroundColor = "#202020";
 }
 
 
