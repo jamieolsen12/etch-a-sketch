@@ -1,5 +1,6 @@
 // STEPS LEFT
 // 1. Finish eraser button
+//      Can either check if eraser is on in draw function, or create seperate function and listener
 // 2. Color grabber?
 // 3. Pretty up settings panel
 // 4. Decide on lighten and darken buttons
@@ -16,12 +17,14 @@ let allCells = [];
 let isMouseDown = false;
 let isGridBorderOn = true;
 let rainbowMode = false;
+let eraserMode = false;
 
 
 // Dom Elements
 const drawColorPicker = document.getElementById('drawColorPicker');
 const bgColorPicker = document.getElementById('bgColorPicker');
 const sizeSlider = document.getElementById('sizeSlider');
+const eraserButton = document.getElementById('eraser-btn');
 const toggleRainbowButton = document.getElementById('rainbow-toggle-btn');
 const toggleGridButton = document.getElementById('grid-toggle-btn');
 const clearButton = document.getElementById('clear-btn');
@@ -38,6 +41,7 @@ clearButton.onclick = reloadGrid
 drawColorPicker.oninput = (e) => setDrawColorTo(e.target.value);
 bgColorPicker.oninput = (e) => setBgColorTo(e.target.value);
 sizeSlider.onchange= (e) => {changeSize(e.target.value)};
+eraserButton.onclick = toggleEraserMode;
 sizeSlider.onmousemove = (e) => updateSizeValue(e.target.value);
 toggleRainbowButton.onclick = toggleRainbowMode;
 toggleGridButton.onclick = toggleGridBorder;
@@ -47,13 +51,17 @@ document.addEventListener('mouseup', () => {isMouseDown = false})
 // function to add click listener to each cell, called in createGrid()
 function addClickColor(div) {
     div.addEventListener("mousedown", function() {
-        
-        if (rainbowMode === true) {
-            div.style.backgroundColor = getRandomColor();
-        } else {
-            div.style.backgroundColor = drawColor;
-        }
-        div.classList.add("inked");
+    
+        if (eraserMode === false) {
+            if (rainbowMode === true) {
+                div.style.backgroundColor = getRandomColor();
+            } else {
+                div.style.backgroundColor = drawColor;
+            }
+            div.classList.add("inked");
+        } else if (eraserMode === true) {
+            div.style.backgroundColor = bgColor;
+        }   
     })
 }
 
@@ -61,12 +69,16 @@ function addClickColor(div) {
 function addHoverColor(div) {
     div.addEventListener("mouseover", function() {
         if (isMouseDown) {
-            if (rainbowMode === true) {
-                div.style.backgroundColor = getRandomColor();
-            } else {
-                div.style.backgroundColor = drawColor;
+            if (eraserMode === false) {
+                if (rainbowMode === true) {
+                    div.style.backgroundColor = getRandomColor();
+                } else {
+                    div.style.backgroundColor = drawColor;
+                }
+                div.classList.add("inked");
+            } else if (eraserMode === true) {
+                div.style.backgroundColor = bgColor;
             }
-            div.classList.add("inked");
         }
     })
 }
@@ -208,6 +220,19 @@ function toggleRainbowMode() {
         rainbowMode = true;
         toggleRainbowButton.style.color = "#202020";
         toggleRainbowButton.style.backgroundColor = "#7245b5";
+    }
+}
+
+// use similar function to toggle eraser mode
+function toggleEraserMode() {
+    if (eraserMode === false) {
+        eraserMode = true;
+        eraserButton.style.color = "#202020";
+        eraserButton.style.backgroundColor = "#7245b5";
+    } else if (eraserMode === true) {
+        eraserMode = false;
+        eraserButton.style.color = "#7245b5";
+        eraserButton.style.backgroundColor = "#202020";
     }
 }
 
