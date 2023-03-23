@@ -1,6 +1,4 @@
 // STEPS LEFT
-// 1. Finish eraser button
-//      Can either check if eraser is on in draw function, or create seperate function and listener
 // 2. Color grabber?
 // 3. Pretty up settings panel
 // 4. Decide on lighten and darken buttons
@@ -102,7 +100,7 @@ function setCurrentSizeTo(newSize) {
 }
 
 function updateSizeValue(value) {
-    sizeValue.innerHTML = `Grid size: ${value} x ${value}`
+    sizeValue.innerHTML = `Grid Size: ${value} x ${value}`
 }
 
 function toggleGridBorder() {

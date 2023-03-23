@@ -17,28 +17,35 @@
 
         <div class="settings-panel">
             
-            <div class="color-container" id="draw-color-container">
-                <input class="color-picker" id="drawColorPicker" type="color" value="#02f2d6" />
-                <p>Pen Color</p>
+            <div class="color-section">
+
+                <div class="color-container" id="draw-color-container">
+                    <input class="color-picker" id="drawColorPicker" type="color" value="#02f2d6" />
+                    <p>Pen Color</p>
+                </div>
+
+                <div class="color-container" id="bg-color-container">
+                    <input class="color-picker" id="bgColorPicker" type="color" value="#ffffff" />
+                    <p>Background Color</p>
+                </div>
             </div>
-            <div class="color-container" id="bg-color-container">
-                <input class="color-picker" id="bgColorPicker" type="color" value="#ffffff" />
-                <p>Background Color</p>
-            </div>
-            <div class="size-slider-container">
+
+            <div class="size-slider-section">
                 <div id="sizeValue" class="size-value">Grid Size: 16 x 16</div>
                 <input id="sizeSlider" type="range" value="16" min="1" max="64">
             </div>
             
-            <div class="eraser-container">
-                <button id="eraser-btn">Toggle Eraser</button>
-            </div>
+            <div class="toggle-section">
+                <div class="eraser-container">
+                    <button id="eraser-btn">Toggle Eraser</button>
+                </div>
 
-            <div class="toggle-rainbow-container">
-                <button id="rainbow-toggle-btn">Toggle Rainbow</button>
-            </div>
-            <div class="grid-toggle-container">
-                <button id="grid-toggle-btn">Toggle Grid</button>
+                <div class="toggle-rainbow-container">
+                    <button id="rainbow-toggle-btn">Toggle Rainbow</button>
+                </div>
+                <div class="grid-toggle-container">
+                    <button id="grid-toggle-btn">Toggle Grid</button>
+                </div>
             </div>
             <div id="clear-button-container">
                 <button id="clear-btn">Clear</button>
@@ -53,7 +60,7 @@
     </div>
    
 
-<footer>Copyright © 2023 Jamie Olsen</footer>
+<footer>Copyright © 2023 Jamie Olsen </footer>
     
 
     <script src="app.js"></script>

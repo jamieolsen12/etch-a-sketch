@@ -124,7 +124,23 @@ button {
 #clear-btn:active {
     background-color: #7245b5;
     color: #202020;
-  }
+}
+
+.toggle-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.size-slider-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+
+}
+
+
 
 footer {
 margin-top: 50px;
