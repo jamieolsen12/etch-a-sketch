@@ -11,7 +11,7 @@ const drawColorPicker = document.getElementById('drawColorPicker');
 const bgColorPicker = document.getElementById('bgColorPicker');
 const sizeSlider = document.getElementById('sizeSlider');
 const eraserButton = document.getElementById('eraser-btn');
-const toggleRainbowButton = document.getElementById('rainbow-toggle-btn');
+const rainbowButton = document.getElementById('rainbow-toggle-btn');
 const toggleGridButton = document.getElementById('grid-toggle-btn');
 const clearButton = document.getElementById('clear-btn');
 let grid = document.querySelector('.grid');
@@ -38,16 +38,15 @@ createGrid(currentSize);
 
 
 // Add event listeners
-document.addEventListener('mousedown', () => {isMouseDown = true})
-document.addEventListener('mouseup', () => {isMouseDown = false})
-// when the user clicks on the header, change primary color to drawColor to change appearance of the whole page
+document.addEventListener('mousedown', () => {isMouseDown = true});
+document.addEventListener('mouseup', () => {isMouseDown = false});
 header.onclick = toggleLayout;
 drawColorPicker.oninput = (e) => setDrawColorTo(e.target.value);
 bgColorPicker.oninput = (e) => setBgColorTo(e.target.value);
 sizeSlider.onchange= (e) => {changeSize(e.target.value)};
 sizeSlider.onmousemove = (e) => updateSizeValue(e.target.value);
 eraserButton.onclick = toggleEraserMode;
-toggleRainbowButton.onclick = toggleRainbowMode;
+rainbowButton.onclick = toggleRainbowMode;
 toggleGridButton.onclick = toggleGridBorder;
 clearButton.onclick = reloadGrid;
 
@@ -283,14 +282,15 @@ function setEraserButtonAppearance() {
 
 function setRainbowButtonAppearance() {
     if (rainbowMode === false) {
-        toggleRainbowButton.style.color = getRootPrimaryColor();
-        toggleRainbowButton.style.backgroundColor = getRootSecondaryColor();
+        rainbowButton.style.color = getRootPrimaryColor();
+        rainbowButton.style.backgroundColor = getRootSecondaryColor();
     } else if (rainbowMode === true) {
-        toggleRainbowButton.style.color = getRootSecondaryColor();
-        toggleRainbowButton.style.backgroundColor = getRootPrimaryColor();
+        rainbowButton.style.color = getRootSecondaryColor();
+        rainbowButton.style.backgroundColor = getRootPrimaryColor();
     }
 }
 
+// set appearances that don't change automatically
 function setButtonAppearances() {
     setGridToggleButtonAppearance();
     setEraserButtonAppearance();
@@ -298,16 +298,14 @@ function setButtonAppearances() {
 }
 
 // function to toggle the layout between the new pen color and the default purple color,
-// in case the user accidentally changes to a shit color
+// in case the user accidentally changes to an unwanted color
 function toggleLayout() {
     if (getComputedStyle(root).getPropertyValue('--primary-color').trim() === '#7245b5') {
         document.documentElement.style.setProperty('--primary-color', drawColor);
         primaryColor = drawColor;
-        // function to change button appearances as they won't change automatically with root color
         setButtonAppearances();
     } else {
         document.documentElement.style.setProperty('--primary-color', "#7245b5");
-        // function to change button appearances as they won't change automatically with root color
         setButtonAppearances();
     }
 }
