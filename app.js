@@ -18,7 +18,13 @@ let rainbowMode = false;
 let eraserMode = false;
 
 
+
+
+
 // Dom Elements
+const root = document.documentElement;
+const primaryColor = getComputedStyle(root).getPropertyValue('--primary-color');
+const secondaryColor = getComputedStyle(root).getPropertyValue('--secondary-color');
 const drawColorPicker = document.getElementById('drawColorPicker');
 const bgColorPicker = document.getElementById('bgColorPicker');
 const sizeSlider = document.getElementById('sizeSlider');
@@ -105,29 +111,34 @@ function updateSizeValue(value) {
 
 function toggleGridBorder() {
     document.querySelectorAll('.cell').forEach(function(e) {
-        if (e.style.border) {
-          e.style.border = '';
-          isGridBorderOn = false;
-          setGridToggleButtonAppearance();
-        } else {
-          e.style.border = 'solid 1px black';
-          isGridBorderOn = true;
-          setGridToggleButtonAppearance();
-        }
-      });
+      if (e.style.border) {
+        e.style.border = '';
+        isGridBorderOn = false;
+        setGridToggleButtonAppearance();
+        console.log(isGridBorderOn);
+        console.log(e.style.border);
+      } else if (e.style.border === '') {
+        e.style.border = '1px solid black';
+        isGridBorderOn = true;
+        setGridToggleButtonAppearance();
+        console.log(isGridBorderOn);
+        console.log(e.style.border);
+      }
+    });
     console.log("grid changed");
-}
+  }
+  
 
 // functions to manipulate settings area
 
 function setGridToggleButtonAppearance() {
     if (isGridBorderOn === true) {
-        toggleGridButton.style.color = "#202020";
-        toggleGridButton.style.backgroundColor = "#7245b5";
+        toggleGridButton.style.color = secondaryColor;
+        toggleGridButton.style.backgroundColor = primaryColor;
     }
     if (isGridBorderOn === false) {
-        toggleGridButton.style.color = "#7245b5";
-        toggleGridButton.style.backgroundColor = "#202020";
+        toggleGridButton.style.color = primaryColor;
+        toggleGridButton.style.backgroundColor = secondaryColor;
     }
 }
 
@@ -216,8 +227,8 @@ function toggleRainbowMode() {
         turnOffRainbowMode(); 
     } else if (rainbowMode === false) {
         rainbowMode = true;
-        toggleRainbowButton.style.color = "#202020";
-        toggleRainbowButton.style.backgroundColor = "#7245b5";
+        toggleRainbowButton.style.color = secondaryColor;
+        toggleRainbowButton.style.backgroundColor = primaryColor;
         turnOffEraserMode();
     }
 }
@@ -226,16 +237,16 @@ function toggleRainbowMode() {
 // or when erasor mode is turned on
 function turnOffRainbowMode() {
     rainbowMode = false;
-    toggleRainbowButton.style.color = "#7245b5";
-    toggleRainbowButton.style.backgroundColor = "#202020";
+    toggleRainbowButton.style.color = primaryColor;
+    toggleRainbowButton.style.backgroundColor = secondaryColor;
 }
 
 // use similar function to toggle eraser mode
 function toggleEraserMode() {
     if (eraserMode === false) {
         eraserMode = true;
-        eraserButton.style.color = "#202020";
-        eraserButton.style.backgroundColor = "#7245b5";
+        eraserButton.style.color = secondaryColor;
+        eraserButton.style.backgroundColor = primaryColor;
         turnOffRainbowMode(); 
     } else if (eraserMode === true) {
         turnOffEraserMode()
@@ -248,8 +259,8 @@ function toggleEraserMode() {
 
 function turnOffEraserMode() {
     eraserMode = false;
-    eraserButton.style.color = "#7245b5";
-    eraserButton.style.backgroundColor = "#202020";
+    eraserButton.style.color = primaryColor;
+    eraserButton.style.backgroundColor = secondaryColor;
 }
 
 

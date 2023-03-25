@@ -1,52 +1,55 @@
 
-
-
-body {
+:root {
+    --primary-color: #7245b5;
+    --secondary-color: #202020;
+  }
+  
+  body {
     background-color: black;
-}
-
-header {
+  }
+  
+  header {
     padding: 15px;
     margin-bottom: 30px;
     text-align: center;
     font-family: 'Delicious Handrawn', cursive;
     font-size: 64px;
-    color: #7245b5;
-}
-
-.game {
+    color: var(--primary-color);
+  }
+  
+  .game {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 125px;
-}
-
-/* Settings Section */
-
-.settings-panel {
-    background-color: #202020;
+  }
+  
+  /* Settings Panel */
+  
+  .settings-panel {
+    background-color: var(--secondary-color);
     padding: 25px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 35px;
-    color: #7245b5;
+    color: var(--primary-color);
     font-family: 'Roboto', sans-serif;
     border-radius: 10px;
-}
-
-.color-container {
+  }
+  
+  .color-container {
     width: 200px;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start ;
+    justify-content: flex-start;
     align-items: center;
     gap: 20px;
-}
-
-input[type="color"] {
-    border: 3px solid #7245b5;
+  }
+  
+  input[type="color"] {
+    border: 3px solid var(--primary-color);
     width: 60px;
     height: 40px;
     background-color: none;
@@ -54,65 +57,62 @@ input[type="color"] {
     cursor: pointer;
   }
   
-
-.size-slider-container {
+  .size-slider-container {
     gap: 15px;
     width: 200px;
     text-align: center;
-}
-
-.size-slider-section {
+  }
+  
+  .size-slider-section {
     display: flex;
     flex-direction: column;
     gap: 10px;
     align-items: center;
-
-}
-
-#sizeSlider {
+  }
+  
+  #sizeSlider {
     width: 200px;
-    background: #7245b5;
+    background: var(--primary-color);
     cursor: pointer;
-}
-
-.toggle-section {
+  }
+  
+  .toggle-section {
     display: flex;
     flex-direction: column;
     gap: 20px;
-}
-
-button {
-    border: 1px solid #7245b5;
-    background-color: #202020;
+  }
+  
+  button {
+    border: 1px solid var(--primary-color);
+    background-color: var(--secondary-color);
     padding: 10px;
     width: 200px;
     font-size: 14px;
     font-weight: 400;
-    color: #7245b5;
+    color: var(--primary-color);
     cursor: pointer;
-}
-
-/* Since clear button has no toggle, 
-only change its appearance while its being clicked */
-#clear-btn:active {
-    background-color: #7245b5;
-    color: #202020;
-}
-
-
-/* Grid Section */
-
-.grid-container {
-    background-color: #202020;
+  }
+  
+  /* Since clear button has no toggle, 
+  only change its appearance while its being clicked */
+  #clear-btn:active {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+  }
+  
+  /* Grid Section */
+  
+  .grid-container {
+    background-color: var(--secondary-color);
     width: 650px;
     height: 650px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-}
-
-.grid {
+  }
+  
+  .grid {
     width: 600px;
     height: 600px;
     display: flex;
@@ -120,27 +120,26 @@ only change its appearance while its being clicked */
     align-self: center;
     justify-content: center;
     background-color: white;
-    border: "1px solid black";
-}
-
-.row {
+    border: 1px solid black;
+  }
+  
+  .row {
     display: flex;
     flex-direction: row;
     flex-grow: 1;
-}
-
-.cell {
-    border: "1px solid black";
+  }
+  
+  .cell {
     flex-grow: 1;
-}
-
-
-/* Footer  */
-
-footer {
-margin-top: 50px;
-color: white;
-text-align: center;
-font-size: 14px;
-font-family: 'Roboto', sans-serif;
-}
+  }
+  
+  /* Footer */
+  
+  footer {
+    margin-top: 50px;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+  }
+  
