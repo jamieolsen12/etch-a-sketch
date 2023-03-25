@@ -15,6 +15,7 @@
     font-family: 'Delicious Handrawn', cursive;
     font-size: 64px;
     color: var(--primary-color);
+    cursor: pointer;
   }
   
   .game {

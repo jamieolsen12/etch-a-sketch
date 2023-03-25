@@ -4,6 +4,17 @@
 // 4. Decide on lighten and darken buttons
 
 
+// Dom Elements
+const root = document.documentElement;
+const header = document.querySelector('header');
+const drawColorPicker = document.getElementById('drawColorPicker');
+const bgColorPicker = document.getElementById('bgColorPicker');
+const sizeSlider = document.getElementById('sizeSlider');
+const eraserButton = document.getElementById('eraser-btn');
+const toggleRainbowButton = document.getElementById('rainbow-toggle-btn');
+const toggleGridButton = document.getElementById('grid-toggle-btn');
+const clearButton = document.getElementById('clear-btn');
+let grid = document.querySelector('.grid');
 
 
 // Initialize variables
@@ -16,23 +27,9 @@ let isMouseDown = false;
 let isGridBorderOn = true;
 let rainbowMode = false;
 let eraserMode = false;
+let primaryColor = getComputedStyle(root).getPropertyValue('--primary-color');
+let secondaryColor = getComputedStyle(root).getPropertyValue('--secondary-color');
 
-
-
-
-
-// Dom Elements
-const root = document.documentElement;
-const primaryColor = getComputedStyle(root).getPropertyValue('--primary-color');
-const secondaryColor = getComputedStyle(root).getPropertyValue('--secondary-color');
-const drawColorPicker = document.getElementById('drawColorPicker');
-const bgColorPicker = document.getElementById('bgColorPicker');
-const sizeSlider = document.getElementById('sizeSlider');
-const eraserButton = document.getElementById('eraser-btn');
-const toggleRainbowButton = document.getElementById('rainbow-toggle-btn');
-const toggleGridButton = document.getElementById('grid-toggle-btn');
-const clearButton = document.getElementById('clear-btn');
-let grid = document.querySelector('.grid');
 
 
 // create the grid and update cell list, set cell properties 
@@ -41,16 +38,33 @@ createGrid(currentSize);
 
 
 // Add event listeners
-clearButton.onclick = reloadGrid
+document.addEventListener('mousedown', () => {isMouseDown = true})
+document.addEventListener('mouseup', () => {isMouseDown = false})
+// when the user clicks on the header, change primary color to drawColor to change appearance of the whole page
+header.addEventListener('click', () => {
+    document.documentElement.style.setProperty('--primary-color', drawColor);
+    primaryColor = drawColor;
+    // function to change button appearances as they won't change automatically with root color
+    setButtonAppearances();
+});
 drawColorPicker.oninput = (e) => setDrawColorTo(e.target.value);
 bgColorPicker.oninput = (e) => setBgColorTo(e.target.value);
 sizeSlider.onchange= (e) => {changeSize(e.target.value)};
-eraserButton.onclick = toggleEraserMode;
 sizeSlider.onmousemove = (e) => updateSizeValue(e.target.value);
+eraserButton.onclick = toggleEraserMode;
 toggleRainbowButton.onclick = toggleRainbowMode;
 toggleGridButton.onclick = toggleGridBorder;
-document.addEventListener('mousedown', () => {isMouseDown = true})
-document.addEventListener('mouseup', () => {isMouseDown = false})
+clearButton.onclick = reloadGrid;
+
+// function to match color to root primary color so that it can be changed live
+function getRootPrimaryColor() {
+    return getComputedStyle(root).getPropertyValue('--primary-color');
+}
+
+// same to return secondary 
+function getRootSecondaryColor() {
+    return getComputedStyle(root).getPropertyValue('--secondary-color');
+}
 
 // function to add click listener to each cell, called in createGrid()
 function addClickColor(div) {
@@ -133,12 +147,12 @@ function toggleGridBorder() {
 
 function setGridToggleButtonAppearance() {
     if (isGridBorderOn === true) {
-        toggleGridButton.style.color = secondaryColor;
-        toggleGridButton.style.backgroundColor = primaryColor;
+        toggleGridButton.style.color = getRootSecondaryColor();
+        toggleGridButton.style.backgroundColor = getRootPrimaryColor();
     }
     if (isGridBorderOn === false) {
-        toggleGridButton.style.color = primaryColor;
-        toggleGridButton.style.backgroundColor = secondaryColor;
+        toggleGridButton.style.color = getRootPrimaryColor();
+        toggleGridButton.style.backgroundColor = getRootSecondaryColor();
     }
 }
 
@@ -227,8 +241,7 @@ function toggleRainbowMode() {
         turnOffRainbowMode(); 
     } else if (rainbowMode === false) {
         rainbowMode = true;
-        toggleRainbowButton.style.color = secondaryColor;
-        toggleRainbowButton.style.backgroundColor = primaryColor;
+        setRainbowButtonAppearance()
         turnOffEraserMode();
     }
 }
@@ -237,19 +250,18 @@ function toggleRainbowMode() {
 // or when erasor mode is turned on
 function turnOffRainbowMode() {
     rainbowMode = false;
-    toggleRainbowButton.style.color = primaryColor;
-    toggleRainbowButton.style.backgroundColor = secondaryColor;
+    setRainbowButtonAppearance();
 }
 
 // use similar function to toggle eraser mode
 function toggleEraserMode() {
     if (eraserMode === false) {
         eraserMode = true;
-        eraserButton.style.color = secondaryColor;
-        eraserButton.style.backgroundColor = primaryColor;
+        setEraserButtonAppearance();
         turnOffRainbowMode(); 
     } else if (eraserMode === true) {
         turnOffEraserMode()
+        setEraserButtonAppearance();
     }
 }
 
@@ -259,11 +271,36 @@ function toggleEraserMode() {
 
 function turnOffEraserMode() {
     eraserMode = false;
-    eraserButton.style.color = primaryColor;
-    eraserButton.style.backgroundColor = secondaryColor;
+    setEraserButtonAppearance();
 }
 
 
+// function to set eraser appearance based on whether it is on or off
+function setEraserButtonAppearance() {
+    if (eraserMode === false) {
+        eraserButton.style.color = getRootPrimaryColor();
+        eraserButton.style.backgroundColor = getRootSecondaryColor();
+    } else if (eraserMode === true) {
+        eraserButton.style.color = getRootSecondaryColor();
+        eraserButton.style.backgroundColor = getRootPrimaryColor();
+    }
+}
+
+function setRainbowButtonAppearance() {
+    if (rainbowMode === false) {
+        toggleRainbowButton.style.color = getRootPrimaryColor();
+        toggleRainbowButton.style.backgroundColor = getRootSecondaryColor();
+    } else if (rainbowMode === true) {
+        toggleRainbowButton.style.color = getRootSecondaryColor();
+        toggleRainbowButton.style.backgroundColor = getRootPrimaryColor();
+    }
+}
+
+function setButtonAppearances() {
+    setGridToggleButtonAppearance();
+    setEraserButtonAppearance();
+    setRainbowButtonAppearance();
+}
 
 
 
