@@ -22,6 +22,8 @@ header {
     gap: 125px;
 }
 
+/* Settings Section */
+
 .settings-panel {
     background-color: #202020;
     padding: 25px;
@@ -43,14 +45,13 @@ header {
     gap: 20px;
 }
 
-
-
 input[type="color"] {
     border: 3px solid #7245b5;
     width: 60px;
     height: 40px;
     background-color: none;
     padding: 0;
+    cursor: pointer;
   }
   
 
@@ -60,29 +61,46 @@ input[type="color"] {
     text-align: center;
 }
 
+.size-slider-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+
+}
+
 #sizeSlider {
     width: 200px;
     background: #7245b5;
+    cursor: pointer;
 }
 
-/* #sizeSlider::-webkit-slider-runnable-track {
-    background-color: #7245b5;
-} */
-
-
-
-
-
-.cell {
-    border: "1px solid black";
-    flex-grow: 1;
-}
-
-.row {
+.toggle-section {
     display: flex;
-    flex-direction: row;
-    flex-grow: 1;
+    flex-direction: column;
+    gap: 20px;
 }
+
+button {
+    border: 1px solid #7245b5;
+    background-color: #202020;
+    padding: 10px;
+    width: 200px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #7245b5;
+    cursor: pointer;
+}
+
+/* Since clear button has no toggle, 
+only change its appearance while its being clicked */
+#clear-btn:active {
+    background-color: #7245b5;
+    color: #202020;
+}
+
+
+/* Grid Section */
 
 .grid-container {
     background-color: #202020;
@@ -105,42 +123,19 @@ input[type="color"] {
     border: "1px solid black";
 }
 
-
-
-#size-btn {
-    width: 75px;
-}
-
-button {
-    border: 1px solid #7245b5;
-    background-color: #202020;
-    padding: 10px;
-    width: 200px;
-    font-size: 14px;
-    font-weight: 400;
-    color: #7245b5;
-}
-
-#clear-btn:active {
-    background-color: #7245b5;
-    color: #202020;
-}
-
-.toggle-section {
+.row {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    flex-direction: row;
+    flex-grow: 1;
 }
 
-.size-slider-section {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-
+.cell {
+    border: "1px solid black";
+    flex-grow: 1;
 }
 
 
+/* Footer  */
 
 footer {
 margin-top: 50px;
