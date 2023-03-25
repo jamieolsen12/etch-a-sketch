@@ -6,6 +6,7 @@
   
   body {
     background-color: black;
+
   }
   
   header {
@@ -67,15 +68,28 @@
   .size-slider-section {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
     align-items: center;
   }
   
-  #sizeSlider {
+  
+
+  input[type="range"] {
     width: 200px;
+    height: 2px;
     background: var(--primary-color);
-    cursor: pointer;
-  }
+    appearance: none;
+    outline: none;
+    border-radius: 2px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary-color);
+}
   
   .toggle-section {
     display: flex;

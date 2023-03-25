@@ -41,12 +41,7 @@ createGrid(currentSize);
 document.addEventListener('mousedown', () => {isMouseDown = true})
 document.addEventListener('mouseup', () => {isMouseDown = false})
 // when the user clicks on the header, change primary color to drawColor to change appearance of the whole page
-header.addEventListener('click', () => {
-    document.documentElement.style.setProperty('--primary-color', drawColor);
-    primaryColor = drawColor;
-    // function to change button appearances as they won't change automatically with root color
-    setButtonAppearances();
-});
+header.onclick = toggleLayout;
 drawColorPicker.oninput = (e) => setDrawColorTo(e.target.value);
 bgColorPicker.oninput = (e) => setBgColorTo(e.target.value);
 sizeSlider.onchange= (e) => {changeSize(e.target.value)};
@@ -300,6 +295,21 @@ function setButtonAppearances() {
     setGridToggleButtonAppearance();
     setEraserButtonAppearance();
     setRainbowButtonAppearance();
+}
+
+// function to toggle the layout between the new pen color and the default purple color,
+// in case the user accidentally changes to a shit color
+function toggleLayout() {
+    if (getComputedStyle(root).getPropertyValue('--primary-color').trim() === '#7245b5') {
+        document.documentElement.style.setProperty('--primary-color', drawColor);
+        primaryColor = drawColor;
+        // function to change button appearances as they won't change automatically with root color
+        setButtonAppearances();
+    } else {
+        document.documentElement.style.setProperty('--primary-color', "#7245b5");
+        // function to change button appearances as they won't change automatically with root color
+        setButtonAppearances();
+    }
 }
 
 
