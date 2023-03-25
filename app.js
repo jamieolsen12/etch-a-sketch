@@ -1,6 +1,4 @@
 // STEPS LEFT
-// 2. Color grabber?
-// 3. Pretty up settings panel
 // 4. Decide on lighten and darken buttons
 
 
@@ -78,7 +76,7 @@ function addClickListener(div) {
             }   
         } else if (colorGrabberMode === true) {
             console.log(`tring to change color picker to ${div.style.backgroundColor}`)
-            drawColorPicker.value = div.style.backgroundColor;
+            drawColorPicker.value = rgbToHex(div.style.backgroundColor);
             setDrawColorTo(div.style.backgroundColor);
             toggleColorGrabberMode();
 
@@ -344,7 +342,28 @@ function setColorGrabberButtonAppearance() {
     console.log(`color grabber button background color is ${colorGrabberButton.style.color}`)
 }
 
-
+// courtesy of ChatGPT, for the color grabber to convert the div's background color 
+// into a hex code for the color picker to take
+function rgbToHex(rgbString) {
+    const rgbMatch = rgbString.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+    if (!rgbMatch) {
+      return null;
+    }
+    const r = parseInt(rgbMatch[1], 10);
+    const g = parseInt(rgbMatch[2], 10);
+    const b = parseInt(rgbMatch[3], 10);
+    let hex = "#";
+    for (let i = 0; i < 3; i++) {
+      let hexComponent = [r, g, b][i].toString(16);
+      if (hexComponent.length < 2) {
+        hexComponent = "0" + hexComponent;
+      }
+      hex += hexComponent;
+    }
+    return hex;
+  }
+  
+  
 
 
 
