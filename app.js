@@ -1,6 +1,6 @@
 // STEPS LEFT
 // 4. Decide on lighten and darken buttons
-
+// 5. refactor code before publishing (whoops lol)
 
 // Dom Elements
 const root = document.documentElement;
