@@ -2,162 +2,171 @@
 :root {
     --primary-color: #7245b5;
     --secondary-color: #202020;
-  }
+}
   
-  body {
-    background-color: black;
-  }
-  
-  header {
-    padding: 15px;
-    margin-bottom: 30px;
-    text-align: center;
-    font-family: 'Delicious Handrawn', cursive;
-    font-size: 64px;
-    color: var(--primary-color);
-    cursor: pointer;
-  }
-  
-  .game {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  /* Settings Panel */
-  
-  .settings-panel {
-    background-color: var(--secondary-color);
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 35px;
-    color: var(--primary-color);
-    font-family: 'Roboto', sans-serif;
-    border-radius: 10px;
-    font-size: 14px;
-  }
-  
-  .color-container {
-    width: 200px;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 20px;
-  }
+body {
+background-color: #151515 ;
+}
+
+header {
+padding: 15px;
+margin-bottom: 30px;
+text-align: center;
+font-family: 'Delicious Handrawn', cursive;
+font-size: 64px;
+color: var(--primary-color);
+cursor: pointer;
+}
+
+.game {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+max-width: 1000px;
+margin-left: auto;
+margin-right: auto;
+}
+
+/* Settings Panel */
+
+.settings-panel {
+background-color: var(--secondary-color);
+padding: 25px;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+gap: 35px;
+color: var(--primary-color);
+font-family: 'Roboto', sans-serif;
+border-radius: 10px;
+font-size: 14px;
+box-shadow: 0 0 8px 1px var(--primary-color);
+}
+
+.color-container {
+width: 200px;
+display: flex;
+flex-direction: row;
+justify-content: flex-start;
+align-items: center;
+gap: 20px;
+}
 
 
-  input[type="color"] {
-    border: 2px solid var(--primary-color);
-    width: 60px;
-    height: 40px;
-    background-color: none;
-    padding: 0;
-    cursor: pointer;
-  }
-  
-  .size-slider-container {
-    gap: 15px;
-    width: 200px;
-    text-align: center;
-  }
-  
-  .size-slider-section {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-  }
-  
-  
+input[type="color"] {
+border: 2px solid var(--primary-color);
+width: 60px;
+height: 40px;
+background-color: none;
+padding: 0;
+cursor: pointer;
+}
 
-  input[type="range"] {
-    width: 200px;
-    height: 2px;
-    background: var(--primary-color);
-    appearance: none;
-    outline: none;
-    border-radius: 2px;
+.size-slider-container {
+gap: 15px;
+width: 200px;
+text-align: center;
+}
+
+.size-slider-section {
+display: flex;
+flex-direction: column;
+gap: 20px;
+align-items: center;
+}
+
+
+
+input[type="range"] {
+width: 200px;
+height: 2px;
+background: var(--primary-color);
+appearance: none;
+outline: none;
+border-radius: 2px;
+cursor: pointer;
 }
 
 input[type="range"]::-webkit-slider-thumb {
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: var(--primary-color);
+appearance: none;
+width: 20px;
+height: 20px;
+border-radius: 50%;
+background: var(--primary-color);
+cursor: pointer;
 }
-  
-  .toggle-section {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  button {
-    border: 1px solid var(--primary-color);
-    background-color: var(--secondary-color);
-    padding: 10px;
-    width: 100%;
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--primary-color);
-    cursor: pointer;
-  }
-  
-  /* Since clear button has no toggle, 
-  only change its appearance while its being clicked */
-  #clear-btn:active {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-  }
-  
-  /* Grid Section */
-  
-  .grid-container {
-    background-color: var(--secondary-color);
-    width: 650px;
-    height: 650px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-  }
-  
-  .grid {
-    width: 600px;
-    height: 600px;
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-    justify-content: center;
-    background-color: white;
-    border: 1px solid black;
-  }
-  
-  .row {
-    display: flex;
-    flex-direction: row;
-    flex-grow: 1;
-  }
-  
-  .cell {
-    flex-grow: 1;
-  }
-  
-  /* Footer */
-  
-  footer {
-    margin-top: 50px;
-    color: grey;
-    text-align: center;
-    font-size: 14px;
-    font-family: 'Roboto', sans-serif;
-  }
-  
+
+.toggle-section {
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+button {
+border: 1px solid var(--primary-color);
+background-color: var(--secondary-color);
+padding: 10px;
+width: 100%;
+font-size: 14px;
+font-weight: 400;
+color: var(--primary-color);
+cursor: pointer;
+border-radius: 5px;
+}
+
+button:hover {
+transform: scale(1.03);
+}
+
+
+/* Since clear button has no toggle, 
+only change its appearance while its being clicked */
+#clear-btn:active {
+background-color: var(--primary-color);
+color: var(--secondary-color);
+}
+
+/* Grid Section */
+
+.grid-container {
+background-color: var(--secondary-color);
+width: 650px;
+height: 650px;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 10px;
+box-shadow: 0 0 8px 1px var(--primary-color);
+}
+
+.grid {
+width: 600px;
+height: 600px;
+display: flex;
+flex-direction: column;
+align-self: center;
+justify-content: center;
+background-color: #fff;
+border: 1px solid black;
+}
+
+.row {
+display: flex;
+flex-direction: row;
+flex-grow: 1;
+}
+
+.cell {
+flex-grow: 1;
+}
+
+/* Footer */
+
+footer {
+margin-top: 50px;
+color: grey;
+text-align: center;
+font-size: 14px;
+font-family: 'Roboto', sans-serif;
+}

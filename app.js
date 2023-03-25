@@ -9,10 +9,11 @@ const root = document.documentElement;
 const header = document.querySelector('header');
 const drawColorPicker = document.getElementById('drawColorPicker');
 const bgColorPicker = document.getElementById('bgColorPicker');
+const colorGrabberButton = document.getElementById('color-grabber');
 const sizeSlider = document.getElementById('sizeSlider');
 const eraserButton = document.getElementById('eraser-btn');
 const rainbowButton = document.getElementById('rainbow-toggle-btn');
-const toggleGridButton = document.getElementById('grid-toggle-btn');
+const gridButton = document.getElementById('grid-toggle-btn');
 const clearButton = document.getElementById('clear-btn');
 let grid = document.querySelector('.grid');
 
@@ -27,8 +28,7 @@ let isMouseDown = false;
 let isGridBorderOn = true;
 let rainbowMode = false;
 let eraserMode = false;
-let primaryColor = getComputedStyle(root).getPropertyValue('--primary-color');
-let secondaryColor = getComputedStyle(root).getPropertyValue('--secondary-color');
+let colorGrabberMode = false;
 
 
 
@@ -43,11 +43,12 @@ document.addEventListener('mouseup', () => {isMouseDown = false});
 header.onclick = toggleLayout;
 drawColorPicker.oninput = (e) => setDrawColorTo(e.target.value);
 bgColorPicker.oninput = (e) => setBgColorTo(e.target.value);
+colorGrabberButton.onclick = toggleColorGrabberMode;
 sizeSlider.onchange= (e) => {changeSize(e.target.value)};
 sizeSlider.onmousemove = (e) => updateSizeValue(e.target.value);
 eraserButton.onclick = toggleEraserMode;
 rainbowButton.onclick = toggleRainbowMode;
-toggleGridButton.onclick = toggleGridBorder;
+gridButton.onclick = toggleGridBorder;
 clearButton.onclick = reloadGrid;
 
 // function to match color to root primary color so that it can be changed live
@@ -61,24 +62,32 @@ function getRootSecondaryColor() {
 }
 
 // function to add click listener to each cell, called in createGrid()
-function addClickColor(div) {
+function addClickListener(div) {
     div.addEventListener("mousedown", function() {
-    
-        if (eraserMode === false) {
-            if (rainbowMode === true) {
-                div.style.backgroundColor = getRandomColor();
-            } else {
-                div.style.backgroundColor = drawColor;
-            }
-            div.classList.add("inked");
-        } else if (eraserMode === true) {
-            div.style.backgroundColor = bgColor;
-        }   
+        if (colorGrabberMode === false) {
+            if (eraserMode === false) {
+                if (rainbowMode === true) {
+                    div.style.backgroundColor = getRandomColor();
+                } else {
+                    div.style.backgroundColor = drawColor;
+                    console.log(`Change div ${div.id} to ${div.style.backgroundColor}`)
+                }
+                div.classList.add("inked");
+            } else if (eraserMode === true) {
+                div.style.backgroundColor = bgColor;
+            }   
+        } else if (colorGrabberMode === true) {
+            console.log(`tring to change color picker to ${div.style.backgroundColor}`)
+            drawColorPicker.value = div.style.backgroundColor;
+            setDrawColorTo(div.style.backgroundColor);
+            toggleColorGrabberMode();
+
+        }
     })
 }
 
 // function to add hover listener to each cell, only drawing if mouse is also clicked
-function addHoverColor(div) {
+function addHoverListener(div) {
     div.addEventListener("mouseover", function() {
         if (isMouseDown) {
             if (eraserMode === false) {
@@ -141,12 +150,12 @@ function toggleGridBorder() {
 
 function setGridToggleButtonAppearance() {
     if (isGridBorderOn === true) {
-        toggleGridButton.style.color = getRootSecondaryColor();
-        toggleGridButton.style.backgroundColor = getRootPrimaryColor();
+        gridButton.style.color = getRootSecondaryColor();
+        gridButton.style.backgroundColor = getRootPrimaryColor();
     }
     if (isGridBorderOn === false) {
-        toggleGridButton.style.color = getRootPrimaryColor();
-        toggleGridButton.style.backgroundColor = getRootSecondaryColor();
+        gridButton.style.color = getRootPrimaryColor();
+        gridButton.style.backgroundColor = getRootSecondaryColor();
     }
 }
 
@@ -167,8 +176,8 @@ function createGrid(currentSize) {
             // show ID in box to aid setup for now, will remove later
             cell.id = String(idCounter);
             idCounter++;
-            addClickColor(cell);
-            addHoverColor(cell);
+            addClickListener(cell);
+            addHoverListener(cell);
 
             // add each cell to parent container
             row.appendChild(cell);
@@ -295,6 +304,7 @@ function setButtonAppearances() {
     setGridToggleButtonAppearance();
     setEraserButtonAppearance();
     setRainbowButtonAppearance();
+    setColorGrabberButtonAppearance();
 }
 
 // function to toggle the layout between the new pen color and the default purple color,
@@ -302,13 +312,38 @@ function setButtonAppearances() {
 function toggleLayout() {
     if (getComputedStyle(root).getPropertyValue('--primary-color').trim() === '#7245b5') {
         document.documentElement.style.setProperty('--primary-color', drawColor);
-        primaryColor = drawColor;
         setButtonAppearances();
     } else {
         document.documentElement.style.setProperty('--primary-color', "#7245b5");
         setButtonAppearances();
     }
 }
+
+function toggleColorGrabberMode() {
+    if (colorGrabberMode === false) {
+        colorGrabberMode = true;
+        setColorGrabberButtonAppearance();
+    } else if (colorGrabberMode === true) {
+        colorGrabberMode = false;
+        setColorGrabberButtonAppearance();
+    }
+    console.log("color grabber mode toggled");
+    console.log(`color grabber mode is ${colorGrabberMode}`)
+}
+
+// function to set color grabber button appearance based on whether it is on or off
+function setColorGrabberButtonAppearance() {
+    if (colorGrabberMode === false) {
+        colorGrabberButton.style.color = getRootPrimaryColor();
+        colorGrabberButton.style.backgroundColor = getRootSecondaryColor();
+    } else if (colorGrabberMode === true) {
+        colorGrabberButton.style.color = getRootSecondaryColor();
+        colorGrabberButton.style.backgroundColor = getRootPrimaryColor();
+    }
+    console.log('color grabber button appearance changed');
+    console.log(`color grabber button background color is ${colorGrabberButton.style.color}`)
+}
+
 
 
 
