@@ -321,9 +321,11 @@ function toggleColorGrabberMode() {
     if (colorGrabberMode === false) {
         colorGrabberMode = true;
         setColorGrabberButtonAppearance();
+        document.body.style.cursor = "cell"; 
     } else if (colorGrabberMode === true) {
         colorGrabberMode = false;
         setColorGrabberButtonAppearance();
+        document.body.style.cursor = "default";
     }
     console.log("color grabber mode toggled");
     console.log(`color grabber mode is ${colorGrabberMode}`)
